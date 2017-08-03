@@ -18,7 +18,6 @@ wget https://github.com/vgoffman/Asterisk-FreePBX-A2Billing/blob/master/installe
 
 For any x64 bit
 wget https://github.com/vgoffman/Asterisk-FreePBX-A2Billing/blob/master/installerX64.sh
-
 dos2unix installer.sh
 
 chmod +x installer.sh
