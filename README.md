@@ -22,7 +22,9 @@ dos2unix installer.sh
 
 chmod +x installer.sh
 
-./installer.sh
+./installerPi3.sh
+or
+./installerPi3.sh
 
 - Note: If you are using VMware and want to install the VMware-additions before anything else you need to install the
 following dependencies first to be able to compile the kernel.
