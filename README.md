@@ -13,7 +13,7 @@ apt-get -y install dos2unix
 
 cd ~/
 
-wget https://github.com/vgoffman/Raspberry/installer.sh
+wget https://github.com/vgoffman/Raspberry/blob/master/installer.sh
 
 dos2unix installer.sh
 
