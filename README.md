@@ -18,12 +18,24 @@ wget https://github.com/vgoffman/Asterisk-FreePBX-A2Billing/blob/master/installe
 
 For any x64 bit
 wget https://github.com/vgoffman/Asterisk-FreePBX-A2Billing/blob/master/installerX64.sh
-dos2unix installer.sh
 
-chmod +x installer.sh
+dos2unix installerPi3.sh
+
+or
+
+dos2unix installerX64.sh
+
+
+chmod +x installerPi3.sh
+
+or
+
+chmod +x installerX64.sh
 
 ./installerPi3.sh
+
 or
+
 ./installerPi3.sh
 
 - Note: If you are using VMware and want to install the VMware-additions before anything else you need to install the
