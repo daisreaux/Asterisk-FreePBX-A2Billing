@@ -36,7 +36,7 @@ chmod +x installerX64.sh
 
 or
 
-./installerPi3.sh
+./installerX64.sh
 
 - Note: If you are using VMware and want to install the VMware-additions before anything else you need to install the
 following dependencies first to be able to compile the kernel.
