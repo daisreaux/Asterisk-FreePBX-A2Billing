@@ -11,7 +11,7 @@ service sshd restart
 apt-get update && apt-get upgrade -y 
 
 #Install Required Dependencies
-apt-get install -y build-essential linux-headers-`uname -r` openssh-server apache2 mysql-server
+apt-get install -y build-essential raspberrypi-kernel-headers openssh-server apache2 mysql-server
 apt-get install -y mysql-client bison flex php5 php5-curl php5-cli php5-mysql php-pear php5-gd curl sox
 apt-get install -y libncurses5-dev libssl-dev libmysqlclient-dev mpg123 libxml2-dev libnewt-dev sqlite3
 apt-get install -y libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev gcc make
