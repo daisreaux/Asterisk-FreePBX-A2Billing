@@ -13,10 +13,10 @@ apt-get update && apt-get upgrade -y
 #Install Required Dependencies
 apt-get install -y build-essential raspberrypi-kernel-headers openssh-server apache2 mysql-server
 apt-get install -y mysql-client bison flex php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 curl sox
-apt-get install -y libncurses5-dev libssl-dev libmysqlclient-dev mpg123 libxml2-dev libnewt-dev sqlite3
+apt-get install -y libncurses5-dev libssl-dev default-libmysqlclient-dev libavutil-dev libavcodec-dev libavformat-dev libavdevice-dev libavfilter-dev libavresample-dev libswscale-dev libswresample-dev libpostproc-dev mpg123 libxml2-dev libnewt-dev sqlite3
 apt-get install -y libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev gcc make
 apt-get install -y libasound2-dev libogg-dev libvorbis-dev libcurl4-openssl-dev libical-dev libneon27-dev libsrtp0-dev
-apt-get install -y libspandsp-dev sudo libmyodbc subversion vim-tiny libapache2-mod-php5 php-db php-soap
+apt-get install -y libspandsp-dev sudo subversion vim-tiny php7.0-db php7.0-soap phpmyadmin
 
 #Install Legacy pear requirements
 pear install Console_Getopt
