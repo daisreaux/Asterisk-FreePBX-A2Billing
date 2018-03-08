@@ -25,6 +25,16 @@ apt-get install -y libpam-runtime libio-pty-perl apt-show-versions python
 #Install Legacy pear requirements
 pear install Console_Getopt
 
+#Install iksemel (Google Voice)
+cd /usr/src
+git clone https://github.com/meduketto/iksemel.git
+cd iksemel
+./autogen.sh
+./configure
+make
+make install
+ldconfig
+
 #Install nodejs
 curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
@@ -34,7 +44,6 @@ cd /usr/src
 wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-15-current.tar.gz
 wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.11.tar.gz
 wget http://www.pjsip.org/release/2.7/pjproject-2.7.1.tar.bz2
-
 
 #Compile and install pjproject
 cd /usr/src
