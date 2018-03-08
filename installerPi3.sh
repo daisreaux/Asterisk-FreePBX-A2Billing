@@ -12,48 +12,27 @@ apt-get update && apt-get upgrade -y
 
 #Install Required Dependencies
 apt-get install -y build-essential raspberrypi-kernel-headers openssh-server apache2 mysql-server
-apt-get install -y mysql-client bison flex php7.0 php7.0-curl php7.0-gd php7.0-imap php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 curl sox
-apt-get install -y libncurses5-dev libssl-dev default-libmysqlclient-dev libavutil-dev libavcodec-dev libavformat-dev libavdevice-dev libavfilter-dev libavresample-dev libswscale-dev libswresample-dev libpostproc-dev mpg123 libxml2-dev libnewt-dev sqlite3
+apt-get install -y mysql-client bison flex php7.0 php7.0-curl php7.0-gd php7.0-db php7.0-soap php7.0-imap
+apt-get install -y php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 curl sox
+apt-get install -y libncurses5-dev libssl-dev default-libmysqlclient-dev libavutil-dev libavcodec-dev
+apt-get install -y libavformat-dev libavdevice-dev libavfilter-dev libavresample-dev libswscale-dev libswresample-dev
+apt-get install -y libpostproc-dev mpg123 libxml2-dev libnewt-dev sqlite3
 apt-get install -y libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev gcc make
 apt-get install -y libasound2-dev libogg-dev libvorbis-dev libcurl4-openssl-dev libical-dev libneon27-dev libsrtp0-dev
-apt-get install -y libspandsp-dev sudo subversion vim-tiny php7.0-db php7.0-soap phpmyadmin
+apt-get install -y libspandsp-dev sudo subversion vim-tiny python-dev install perl libnet-ssleay-perl openssl libauthen-pam-perl
+apt-get install -y libpam-runtime libio-pty-perl apt-show-versions python
 
 #Install Legacy pear requirements
 pear install Console_Getopt
 
 #Install nodejs
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_9.x | sudo -E bash -
 sudo apt-get install -y nodejs
-
-#Installing Dependencies for Google Voice
-###
-#Install iksemel
-cd /usr/src
-git clone https://github.com/meduketto/iksemel.git
-cd iksemel
-./autogen.sh
-./configure
-make
-make install
-ldconfig
 
 #Install and Configure Asterisk
 cd /usr/src
-wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13-current.tar.gz
-wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.7.tar.gz
-wget http://www.pjsip.org/release/2.6/pjproject-2.6.tar.bz2
-
-
-#Compile and install pjproject
-cd /usr/src
-tar -xjvf pjproject-2.4.tar.bz2
-rm -f pjproject-2.4.tar.bz2
-cd pjproject-2.4
-#./configure --enable-shared --disable-sound --disable-resample --disable-video --disable-opencore-amr
-./configure --enable-shared --enable-sound --enable-resample --enable-video --disable-opencore-amr
-make dep
-make
-make install
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-15-current.tar.gz
+wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.11.tar.gz
 
 #Compile and Install jansson
 cd /usr/src
@@ -67,8 +46,8 @@ make install
 
 #Compile and install Asterisk
 cd /usr/src
-tar xvfz asterisk-13-current.tar.gz
-rm -f asterisk-13-current.tar.gz
+tar xvfz asterisk-15-current.tar.gz
+rm -f asterisk-15-current.tar.gz
 cd asterisk-*
 contrib/scripts/get_mp3_source.sh
 contrib/scripts/install_prereq install
@@ -185,6 +164,11 @@ systemctl start freepbx
 
 #checking the output of the startup
 systemctl status -l freepbx.service
+
+#Installing WebMin
+##########################
+wget http://prdownloads.sourceforge.net/webadmin/webmin_1.880_all.deb
+dpkg --install webmin_1.880_all.deb
 
 #Installing A2Billing
 ##########################
