@@ -17,7 +17,7 @@ apt-get install -y php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-
 apt-get install -y libncurses5-dev libssl-dev default-libmysqlclient-dev libavutil-dev libavcodec-dev
 apt-get install -y libavformat-dev libavdevice-dev libavfilter-dev libavresample-dev libswscale-dev libswresample-dev
 apt-get install -y libpostproc-dev mpg123 libxml2-dev libnewt-dev sqlite3
-apt-get install -y libsqlite3-dev pkg-config automake libtool autoconf git unixodbc-dev uuid uuid-dev gcc make
+apt-get install -y libsqlite3-dev pkg-config automake libtool libtool-bin autoconf git unixodbc-dev uuid uuid-dev gcc make
 apt-get install -y libasound2-dev libogg-dev libvorbis-dev libcurl4-openssl-dev libical-dev libneon27-dev libsrtp0-dev
 apt-get install -y libspandsp-dev sudo subversion vim-tiny python-dev install perl libnet-ssleay-perl openssl libauthen-pam-perl
 apt-get install -y libpam-runtime libio-pty-perl apt-show-versions python
@@ -33,6 +33,18 @@ sudo apt-get install -y nodejs
 cd /usr/src
 wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-15-current.tar.gz
 wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.11.tar.gz
+wget http://www.pjsip.org/release/2.7/pjproject-2.7.1.tar.bz2
+
+
+#Compile and install pjproject
+cd /usr/src
+tar -xjvf pjproject-2.7.1.tar.bz2
+rm -f pjproject-2.7.1.tar.bz2
+cd pjproject-2.7.1
+./configure --enable-shared --enable-sound --enable-resample --enable-video --enable-opencore-amr
+make dep
+make
+make install
 
 #Compile and Install jansson
 cd /usr/src
@@ -59,35 +71,27 @@ make config
 ldconfig
 update-rc.d -f asterisk remove
 
-#Install English and Russian Asterisk Soundfiles.
-cd /var/lib/asterisk/sounds
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-g722-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-g729-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-gsm-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-ru-g722-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-ru-g729-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-ru-gsm-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-g722-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-g729-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-gsm-current.tar.gz
-tar xvf asterisk-core-sounds-en-g722-current.tar.gz
-rm -f asterisk-core-sounds-en-g722-current.tar.gz
-tar xvf asterisk-core-sounds-en-g729-current.tar.gz
-rm -f asterisk-core-sounds-en-g729-current.tar.gz
-tar xvf asterisk-core-sounds-en-gsm-current.tar.gz
-rm -f asterisk-core-sounds-en-gsm-current.tar.gz
-tar xvf asterisk-core-sounds-ru-g722-current.tar.gz
-rm -f asterisk-core-sounds-ru-g722-current.tar.gz
-tar xvf asterisk-core-sounds-ru-g729-current.tar.gz
-rm -f asterisk-core-sounds-ru-g729-current.tar.gz
-tar xvf asterisk-core-sounds-ru-gsm-current.tar.gz
-rm -f asterisk-core-sounds-ru-gsm-current.tar.gz
-tar xfz asterisk-extra-sounds-en-722-current.tar.gz
-rm -f asterisk-extra-sounds-en-722-current.tar.gz
-tar xfz asterisk-extra-sounds-en-g729-current.tar.gz
-rm -f asterisk-extra-sounds-en-g729-current.tar.gz
-tar xfz asterisk-extra-sounds-en-gsm-current.tar.gz
-rm -f asterisk-extra-sounds-en-gsm-current.tar.gz
+#COMPILING G729
+apt-get update && apt-get upgrade -y
+apt-get install -y dh-autoreconf
+cd /usr/local/src
+wget http://download-mirror.savannah.gnu.org/releases/linphone/plugins/sources/bcg729-1.0.0.tar.gz
+tar xzf bcg729-1.0.0.tar.gz
+cd bcg729-1.0.0
+./configure --libdir=/lib
+make
+make install
+
+#Building codec_g729.so
+cd /usr/local/src
+wget http://asterisk.hosting.lv/src/asterisk-g72x-1.4.tar.bz2
+tar -jxvf asterisk-g72x-1.4.tar.bz2
+cd asterisk-g72x-1.4
+./autogen.sh 
+./configure CFLAGS='-march=armv6' --with-asterisk130 --with-bcg729 --with-asterisk-includes=/usr/include
+make
+make install
+chmod +x /usr/lib/asterisk/modules/codec_g729.so
 
 #Install and Configure FreePBX
 useradd -m asterisk
