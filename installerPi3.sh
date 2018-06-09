@@ -46,14 +46,14 @@ wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.11.tar.gz
 wget http://www.pjsip.org/release/2.7/pjproject-2.7.1.tar.bz2
 
 #Compile and install pjproject
-cd /usr/src
-tar -xjvf pjproject-2.7.2.tar.bz2
-rm -f pjproject-2.7.2.tar.bz2
-cd pjproject-*
-./configure --enable-shared --enable-sound --enable-resample --enable-video --enable-opencore-amr
-make dep
-make
-make install
+#cd /usr/src
+#tar -xjvf pjproject-2.7.2.tar.bz2
+#rm -f pjproject-2.7.2.tar.bz2
+#cd pjproject-*
+#./configure --enable-shared --enable-sound --enable-resample --enable-video --enable-opencore-amr
+#make dep
+#make
+#make install
 
 #Compile and Install jansson
 cd /usr/src
@@ -72,7 +72,7 @@ rm -f asterisk-15-current.tar.gz
 cd asterisk-*
 contrib/scripts/get_mp3_source.sh
 contrib/scripts/install_prereq install
-./configure --with-pjproject-bundled
+./configure --without-pjproject-bundled
 make menuselect
 make
 make install
