@@ -47,9 +47,9 @@ wget http://www.pjsip.org/release/2.7/pjproject-2.7.1.tar.bz2
 
 #Compile and install pjproject
 cd /usr/src
-tar -xjvf pjproject-2.7.1.tar.bz2
-rm -f pjproject-2.7.1.tar.bz2
-cd pjproject-2.7.1
+tar -xjvf pjproject-2.7.2.tar.bz2
+rm -f pjproject-2.7.2.tar.bz2
+cd pjproject-*
 ./configure --enable-shared --enable-sound --enable-resample --enable-video --enable-opencore-amr
 make dep
 make
