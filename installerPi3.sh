@@ -72,7 +72,7 @@ rm -f asterisk-15-current.tar.gz
 cd asterisk-*
 contrib/scripts/get_mp3_source.sh
 contrib/scripts/install_prereq install
-./configure --without-pjproject-bundled
+./configure --with-pjproject-bundled
 make menuselect
 make
 make install
