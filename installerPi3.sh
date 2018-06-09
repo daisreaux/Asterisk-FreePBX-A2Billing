@@ -12,8 +12,8 @@ apt-get update && apt-get upgrade -y
 
 #Install Required Dependencies
 apt-get install -y build-essential raspberrypi-kernel-headers openssh-server apache2 mysql-server
-apt-get install -y mysql-client bison flex php7.0 php7.0-curl php7.0-gd php7.0-db php7.0-soap php7.0-imap
-apt-get install -y php7.0-json php7.0-mcrypt php7.0-mysql php7.0-opcache php7.0-xmlrpc libapache2-mod-php7.0 curl sox
+apt-get install -y mysql-client bison flex php php-curl php-gd php-db php-soap php-imap
+apt-get install -y php7.0-json php-mcrypt php-mysql php-opcache php-xmlrpc libapache2-mod-php curl sox
 apt-get install -y libncurses5-dev libssl-dev default-libmysqlclient-dev libavutil-dev libavcodec-dev
 apt-get install -y libavformat-dev libavdevice-dev libavfilter-dev libavresample-dev libswscale-dev libswresample-dev
 apt-get install -y libpostproc-dev mpg123 libxml2-dev libnewt-dev sqlite3
