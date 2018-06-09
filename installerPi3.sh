@@ -43,7 +43,7 @@ sudo apt-get install -y nodejs
 cd /usr/src
 wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-15-current.tar.gz
 wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.11.tar.gz
-wget http://www.pjsip.org/release/2.7/pjproject-2.7.2.tar.bz2
+wget http://www.pjsip.org/release/2.7.2/pjproject-2.7.2.tar.bz2
 
 #Compile and install pjproject
 #cd /usr/src
