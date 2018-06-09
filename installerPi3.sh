@@ -20,7 +20,7 @@ apt-get install -y libpostproc-dev mpg123 libxml2-dev libnewt-dev sqlite3
 apt-get install -y libsqlite3-dev pkg-config automake libtool libtool-bin autoconf git unixodbc-dev uuid uuid-dev gcc make
 apt-get install -y libasound2-dev libogg-dev libvorbis-dev libcurl4-openssl-dev libical-dev libneon27-dev libsrtp0-dev
 apt-get install -y libspandsp-dev sudo subversion vim-tiny python-dev install perl libnet-ssleay-perl openssl libauthen-pam-perl
-apt-get install -y libpam-runtime libio-pty-perl apt-show-versions python
+apt-get install -y libpam-runtime default-libmysqlclient-dev libio-pty-perl apt-show-versions python
 
 #Install Legacy pear requirements
 pear install Console_Getopt
