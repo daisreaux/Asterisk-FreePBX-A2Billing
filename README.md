@@ -38,6 +38,15 @@ or
 
 ./installerX64.sh
 
+
+or BASH install
+
+For any x64 bit
+wget https://raw.githubusercontent.com/vgoffman/Asterisk-FreePBX-A2Billing/master/installerX64.sh
+
+bash installerX64.sh
+
+
 - Note: If you are using VMware and want to install the VMware-additions before anything else you need to install the
 following dependencies first to be able to compile the kernel.
 
