@@ -22,7 +22,7 @@ apt-get install -y libspandsp-dev sudo libmyodbc subversion vim-tiny libapache2-
 pear install Console_Getopt
 
 #Install nodejs
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+curl -sL https://deb.nodesource.com/setup_10.x | sudo -E bash -
 sudo apt-get install -y nodejs
 
 #Installing Dependencies for Google Voice
@@ -39,16 +39,16 @@ ldconfig
 
 #Install and Configure Asterisk
 cd /usr/src
-wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-13-current.tar.gz
-wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.7.tar.gz
-wget http://www.pjsip.org/release/2.6/pjproject-2.6.tar.bz2
+wget http://downloads.asterisk.org/pub/telephony/asterisk/asterisk-16-current.tar.gz
+wget -O jansson.tar.gz https://github.com/akheron/jansson/archive/v2.12.tar.gz
+wget http://www.pjsip.org/release/2.8/pjproject-2.8.tar.bz2
 
 
 #Compile and install pjproject
 cd /usr/src
-tar -xjvf pjproject-2.4.tar.bz2
-rm -f pjproject-2.4.tar.bz2
-cd pjproject-2.4
+tar -xjvf pjproject-2.8.tar.bz2
+rm -f pjproject-2.8.tar.bz2
+cd pjproject-2.8
 #./configure --enable-shared --disable-sound --disable-resample --disable-video --disable-opencore-amr
 ./configure --enable-shared --enable-sound --enable-resample --enable-video --disable-opencore-amr
 make dep
@@ -67,8 +67,8 @@ make install
 
 #Compile and install Asterisk
 cd /usr/src
-tar xvfz asterisk-13-current.tar.gz
-rm -f asterisk-13-current.tar.gz
+tar xvfz asterisk-16-current.tar.gz
+rm -f asterisk-16-current.tar.gz
 cd asterisk-*
 contrib/scripts/get_mp3_source.sh
 contrib/scripts/install_prereq install
@@ -84,31 +84,16 @@ update-rc.d -f asterisk remove
 cd /var/lib/asterisk/sounds
 wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-g722-current.tar.gz
 wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-g729-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-en-gsm-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-ru-g722-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-ru-g729-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-core-sounds-ru-gsm-current.tar.gz
 wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-g722-current.tar.gz
 wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-g729-current.tar.gz
-wget http://downloads.asterisk.org/pub/telephony/sounds/asterisk-extra-sounds-en-gsm-current.tar.gz
 tar xvf asterisk-core-sounds-en-g722-current.tar.gz
 rm -f asterisk-core-sounds-en-g722-current.tar.gz
 tar xvf asterisk-core-sounds-en-g729-current.tar.gz
 rm -f asterisk-core-sounds-en-g729-current.tar.gz
-tar xvf asterisk-core-sounds-en-gsm-current.tar.gz
-rm -f asterisk-core-sounds-en-gsm-current.tar.gz
-tar xvf asterisk-core-sounds-ru-g722-current.tar.gz
-rm -f asterisk-core-sounds-ru-g722-current.tar.gz
-tar xvf asterisk-core-sounds-ru-g729-current.tar.gz
-rm -f asterisk-core-sounds-ru-g729-current.tar.gz
-tar xvf asterisk-core-sounds-ru-gsm-current.tar.gz
-rm -f asterisk-core-sounds-ru-gsm-current.tar.gz
 tar xfz asterisk-extra-sounds-en-722-current.tar.gz
 rm -f asterisk-extra-sounds-en-722-current.tar.gz
 tar xfz asterisk-extra-sounds-en-g729-current.tar.gz
 rm -f asterisk-extra-sounds-en-g729-current.tar.gz
-tar xfz asterisk-extra-sounds-en-gsm-current.tar.gz
-rm -f asterisk-extra-sounds-en-gsm-current.tar.gz
 
 #Install and Configure FreePBX
 useradd -m asterisk
@@ -149,9 +134,9 @@ EOF
 
 # Download and install FreePBX.
 cd /usr/src
-wget http://mirror.freepbx.org/modules/packages/freepbx/freepbx-14.0-latest.tgz
-tar vxfz freepbx-14.0-latest.tgz
-rm -f freepbx-14.0-latest.tgz
+wget http://mirror.freepbx.org/modules/packages/freepbx/freepbx-15.0-latest.tgz
+tar vxfz freepbx-15.0-latest.tgz
+rm -f freepbx-15.0-latest.tgz
 cd freepbx
 touch /etc/asterisk/ari.conf
 ./start_asterisk start
