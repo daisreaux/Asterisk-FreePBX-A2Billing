@@ -7,6 +7,9 @@
 sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 service sshd restart
 
+#SELinux disable
+selinuxenabled && echo enabled || echo disabled
+
 #Update Your System
 apt-get update && apt-get upgrade -y 
 
